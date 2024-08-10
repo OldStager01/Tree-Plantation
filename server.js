@@ -9,11 +9,11 @@ import authRouter from "./routes/authRoute.js";
 import commonRouter from "./routes/commonRoute.js";
 import ngoRouter from "./routes/ngoRoute.js";
 import isAuthenticated from "./middleware/isAuth.js";
-
-app.use(isAuthenticated);
 app.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
+
+app.use(isAuthenticated);
 
 app.use("/auth", authRouter);
 app.use("/common", commonRouter);
