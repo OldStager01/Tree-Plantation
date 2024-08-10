@@ -7,7 +7,7 @@ export const addPlaceToNGO = async (placeID, ngoID) => {
       console.error("Invalid request");
       throw new Error("Invalid request");
     }
-    const placeDocRef = `${config.firestorePlacesCollection}/${placeID}`;
+    const placeDocRef = `${config.firestorePlacesCollection}/{${placeID}}`;
     const place = await getDoc(placeDocRef);
     if (place === null || Object.keys(place).length === 0) {
       console.error("Place not found");
@@ -20,7 +20,7 @@ export const addPlaceToNGO = async (placeID, ngoID) => {
       place.ngoIds = [];
     }
 
-    const ngoDocRef = `${config.firestoreNGOCollection}/${ngoID}`;
+    const ngoDocRef = `${config.firestoreNGOCollection}/{${ngoID}}`;
     const ngo = await getDoc(ngoDocRef);
     if (!ngo.placeIds || !Array.isArray(ngo.placeIds)) {
       ngo.placeIds = [];
