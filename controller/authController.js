@@ -12,14 +12,28 @@ const registerController = async (req, res) => {
   //TESTING AUTHENTICATION
   // const { uid } = req.user;
   const uid = req?.user?.id;
-  if (uid === undefined || uid === null) {
+  const role = req?.user?.role;
+  const body = req.body;
+
+  if (
+    uid === undefined ||
+    uid === null ||
+    role === undefined ||
+    role === null
+  ) {
     return res.status(401).json({
       status: "error",
       message: "Unauthorized",
     });
   }
-  const { role } = req.params;
-  const body = req.body;
+
+  if (!body) {
+    return res.status(400).json({
+      status: "error",
+      message: "Invalid body",
+    });
+  }
+
   if (role === "user") {
     //Extract data and parse it to firestore format according to model
     const registerData = createModel(body, userModel);
