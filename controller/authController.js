@@ -6,13 +6,14 @@ import { addDoc } from "../services/firebase/firestoreServices.js";
 import { userModel } from "../model/user/index.js";
 import { ngoModel } from "../model/ngo/index.js";
 import createModel from "../model/createModel.js";
+import { addRole } from "../services/auth/role.js";
 
 //Register Controller
 const registerController = async (req, res) => {
   //TESTING AUTHENTICATION
   // const { uid } = req.user;
-  const uid = req?.user?.id;
-  const role = req?.user?.role;
+  const uid = req?.user?.uid;
+  const { role } = req?.params;
   const body = req.body;
 
   if (
@@ -38,14 +39,11 @@ const registerController = async (req, res) => {
     //Extract data and parse it to firestore format according to model
     const registerData = createModel(body, userModel);
     //Append the role and add the user to db
-    await addDoc(
-      config.firestoreUsersCollection,
-      {
-        role: "user",
-        ...registerData,
-      },
-      uid
-    );
+    await addDoc(config.firestoreUsersCollection, registerData, uid);
+
+    //Add the Role
+    await addRole(uid, role);
+
     res.status(200).json({
       staus: "success",
       message: "User registered",
@@ -54,14 +52,11 @@ const registerController = async (req, res) => {
     //Extract data and parse it to firestore format according to model
     const registerData = createModel(body, ngoModel);
     //Append the role and add the user to db
-    await addDoc(
-      config.firestoreNGOCollection,
-      {
-        role: "ngo",
-        ...registerData,
-      },
-      uid
-    );
+    await addDoc(config.firestoreNGOCollection, registerData, uid);
+
+    //Add the Role
+    await addRole(uid, role);
+
     res.status(200).json({
       staus: "success",
       message: "NGO registered",

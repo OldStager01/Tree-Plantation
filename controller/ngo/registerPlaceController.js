@@ -2,7 +2,7 @@ import { registerNewPlace } from "../../services/registerPlace.js";
 
 export const registerNewPlaceContoller = async (req, res) => {
   const { placeData } = req.body;
-  const ngoId = req.user && req.user.role === "ngo" ? req.user.id : null;
+  const ngoId = req.user && req.user.role === "ngo" ? req.user.uid : null;
   console.log(ngoId);
 
   try {

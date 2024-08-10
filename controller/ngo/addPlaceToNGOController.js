@@ -3,7 +3,7 @@ import { addPlaceToNGO } from "../../services/ngo/addPlaceToNGO.js";
 export const addPlaceToNGOController = async (req, res) => {
   try {
     const { placeId } = req.body;
-    const ngoId = req.user && req.user.id ? req.user.id : null;
+    const ngoId = req.user && req.user.uid ? req.user.uid : null;
 
     if (!placeId || !ngoId) {
       console.error("Invalid request");

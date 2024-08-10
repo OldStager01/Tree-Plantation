@@ -1,7 +1,7 @@
 import { getPlacesUderNGO } from "../../services/ngo/getPlacesUnderNGO.js";
 
 export const getPlacesUderNGOController = async (req, res) => {
-  const { id, role } = req.user;
+  const { uid, role } = req.user;
   if (role !== "ngo" || !id) {
     return res.status(403).send("Unauthorized");
   }

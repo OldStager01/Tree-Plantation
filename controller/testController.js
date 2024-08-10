@@ -46,12 +46,7 @@ const testAuthController = async (req, res) => {
     console.log("Data", data);
     console.log("Data.idToken", data.idToken);
 
-    const response2 = await fetch("http://localhost:5100/", {
-      headers: {
-        authorization: `Bearer ${data.idToken}`,
-      },
-    });
-    res.json(await response2.json());
+    res.json(data);
   } catch (error) {
     console.error("createCustomToken :: error", error);
     return res.status(500).json({ message: "Internal Server Error" });
