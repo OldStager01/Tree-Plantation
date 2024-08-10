@@ -117,9 +117,7 @@ const getDoc = async (documentPath) => {
 
 const getDocs = async (
   collectionPath,
-  query = [],
-  orderBy = [],
-  limit = null
+  { query = [], orderBy = [], limit = null }
 ) => {
   //*query = [{field, operator, value}] eg. [{field: "name", operator: "==", value: "John"},...]
   //*orderBy = [{field, direction}] eg. [{field: "name", direction: "asc"},...]

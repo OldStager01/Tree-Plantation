@@ -2,6 +2,9 @@ const placeModel = {
   name: "string",
   address: "string",
   description: "string",
+  city: "string",
+  state: "string",
+  country: "string",
   coordinates: "geopoint", //(Lat, Long)
   images: "array",
   caretaker: "map",

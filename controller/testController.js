@@ -84,7 +84,7 @@ const getDocsController = async (req, res) => {
       throw new Error("Collection Path is required");
     }
 
-    const docs = await getDocs(collectionPath, query, orderBy, limit);
+    const docs = await getDocs(collectionPath, { query, orderBy, limit });
     res.status(200).send({ docs });
   } catch (error) {
     console.error("getDocsController :: error", error);

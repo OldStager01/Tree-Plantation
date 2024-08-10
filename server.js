@@ -5,7 +5,8 @@ app.use(bodyParser.json());
 import dotenv from "dotenv";
 dotenv.config();
 import { testRouter } from "./routes/testRoute.js";
-import registerRouter from "./routes/authRoute.js";
+import authRouter from "./routes/authRoute.js";
+import commonRouter from "./routes/commonRoute.js";
 import ngoRouter from "./routes/ngoRoute.js";
 import isAuthenticated from "./middleware/isAuth.js";
 
@@ -14,7 +15,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
 
-app.use("/auth", registerRouter);
+app.use("/auth", authRouter);
+app.use("/common", commonRouter);
 app.use("/ngo", ngoRouter);
 //!!!TESTING!!!
 app.use("/test", testRouter);

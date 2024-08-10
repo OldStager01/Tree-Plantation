@@ -1,1 +1,0 @@
-const register = async (role) => {};
