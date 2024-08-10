@@ -6,6 +6,7 @@ import { addDoc } from "../services/firebase/firestoreServices.js";
 import { userModel } from "../model/user/index.js";
 import { ngoModel } from "../model/ngo/index.js";
 import createModel from "../model/createModel.js";
+import { addRole } from "../services/auth/role.js";
 
 //Register Controller
 const registerController = async (req, res) => {
