@@ -9,17 +9,10 @@ export const getUser = async (uid) => {
     const user = await getDoc(userRef);
     console.log("Get User :: getUser :: user", user);
 
-    if (!user || !user.role) {
-      //Try for NGO
-      const ngoRef = `${config.firestoreNGOCollection}/{${uid}}`;
-      const ngo = await getDoc(ngoRef);
-      if (!ngo) {
-        throw new Error("User not found");
-      }
-      return ngo;
+    if (!user) {
+      throw new Error("User not found");
     }
     return user;
-    w;
   } catch (error) {
     console.error("Get User :: getUser :: error ", error);
     throw new Error(error);

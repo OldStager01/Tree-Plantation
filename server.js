@@ -8,6 +8,7 @@ import { testRouter } from "./routes/testRoute.js";
 import authRouter from "./routes/authRoute.js";
 import commonRouter from "./routes/commonRoute.js";
 import ngoRouter from "./routes/ngoRoute.js";
+import userRouter from "./routes/userRoute.js";
 import isAuthenticated from "./middleware/isAuth.js";
 
 app.get("/", (req, res) => {
@@ -23,6 +24,7 @@ app.use(isAuthenticated);
 
 app.use("/auth", authRouter);
 app.use("/common", commonRouter);
+app.use("/user", userRouter);
 app.use("/ngo", ngoRouter);
 //!!!TESTING!!!
 app.use("/test", testRouter);
