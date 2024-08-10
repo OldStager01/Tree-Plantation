@@ -1,7 +1,6 @@
 import { admin } from "../config/firebase.js";
 import jwt from "jsonwebtoken";
 import { generateIdToken } from "../testing/generateIdToken.js";
-import { getUser } from "../services/common/getUser.js";
 const secret = "1234567890";
 const isAuthenticated = async (req, res, next) => {
   let token = req.headers.authorization?.split(" ")[1];

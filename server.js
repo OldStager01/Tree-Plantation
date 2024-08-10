@@ -13,7 +13,12 @@ import isAuthenticated from "./middleware/isAuth.js";
 app.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
-
+app.get("/favicon.ico", (req, res) => {
+  res.status(204).end();
+});
+app.get("/favicon.png", (req, res) => {
+  res.status(204).end();
+});
 app.use(isAuthenticated);
 
 app.use("/auth", authRouter);
@@ -23,12 +28,7 @@ app.use("/ngo", ngoRouter);
 app.use("/test", testRouter);
 
 //Favicon error fix
-app.get("/favicon.ico", (req, res) => {
-  res.status(204).end();
-});
-app.get("/favicon.png", (req, res) => {
-  res.status(204).end();
-});
+
 app.listen(5100, () => {
   console.log(`Server started at http://localhost:5100`);
 });
