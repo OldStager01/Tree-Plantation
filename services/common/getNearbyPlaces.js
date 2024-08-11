@@ -4,7 +4,7 @@ import { findLocationsWithinRadius } from "../../utils/haversineDistance.js";
 export const getNearbyPlaces = async (
   lat,
   lon,
-  radius,
+  radius = 100,
   { state = null, country = null }
 ) => {
   try {
