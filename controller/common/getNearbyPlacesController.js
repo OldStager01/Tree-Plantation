@@ -1,7 +1,7 @@
 import { getNearbyPlaces } from "../../services/common/getNearbyPlaces.js";
 
 export const getNearbyPlacesController = async (req, res) => {
-  const { lat, lon, radius, state, country } = req.query;
+  let { lat, lon, radius, state, country } = req.query;
   lat = parseFloat(lat);
   lon = parseFloat(lon);
   radius = parseFloat(radius);
