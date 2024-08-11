@@ -22,6 +22,20 @@ export const getPlantations = async (userId) => {
   }
 };
 
+export const getTrees = async (userId, plantationId) => {
+  try {
+    if (!userId) throw new Error("User ID is required");
+    if (!plantationId) throw new Error("Plantation ID is required");
+    const collectionRef = `${config.firestoreUsersCollection}/{${userId}}/${config.firestorePlantationCollection}/{${plantationId}}/${config.firestoreTreeCollection}`;
+    const trees = await getDocs(collectionRef);
+    if (!trees || trees.length === 0) return [];
+    return trees;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const initializePlantation = async (userId, placeId) => {
   //TODO: Check for ongoing plantation
   try {
