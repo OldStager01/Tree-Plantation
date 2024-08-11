@@ -10,6 +10,7 @@ const uploadFile = async (filename, filePath, uploadPath, mimetype) => {
       gzip: true,
     };
     await bucket.upload(filePath, options);
+
     return filename;
   } catch (error) {
     console.error("uploadFile :: error", error);

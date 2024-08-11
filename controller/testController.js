@@ -7,7 +7,7 @@ import {
   deleteDoc,
   deleteFields,
 } from "../services/firebase/firestoreServices.js";
-
+import fs from "fs";
 import path from "path";
 import { uploadFile } from "../services/firebase/storage.js";
 import { getHistoricalWeatherData } from "../services/openmeteo/historicalData.js";
@@ -177,6 +177,9 @@ const uploadFilesContoller = async (req, res) => {
 
     const fileNames = await Promise.all(uploadPromise);
     console.log("fileNames", fileNames);
+    files.map((file) => {
+      fs.unlinkSync(file.path);
+    });
     res.status(200).send({ message: "Files uploaded successfully", fileNames });
   } catch (error) {
     console.error("uploadFilesContoller :: error", error);
