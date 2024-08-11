@@ -8,7 +8,6 @@ import {
   deleteFieldsController,
   testAuthController,
   uploadFilesContoller,
-  historicalWeatherDataController,
 } from "../controller/testController.js";
 import { upload } from "../config/multer.js";
 import { getChatbotResponse } from "../controller/geminiTestController.js";
@@ -27,7 +26,5 @@ testRouter.delete("/deleteFields", deleteFieldsController);
 testRouter.post("/uploadFiles", upload.array("files"), uploadFilesContoller);
 
 testRouter.post("/gemini", getChatbotResponse);
-
-testRouter.get("/weatherData", historicalWeatherDataController);
 
 export { testRouter };
