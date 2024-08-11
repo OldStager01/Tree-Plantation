@@ -117,7 +117,7 @@ const getDoc = async (documentPath) => {
 
 const getDocs = async (
   collectionPath,
-  { query = [], orderBy = [], limit = null }
+  { query = [], orderBy = [], limit = null } = {}
 ) => {
   //*query = [{field, operator, value}] eg. [{field: "name", operator: "==", value: "John"},...]
   //*orderBy = [{field, direction}] eg. [{field: "name", direction: "asc"},...]
@@ -271,6 +271,51 @@ const deleteFields = async (documentPath, fields) => {
   }
 };
 
+const checkIfDocExists = async (documentPath) => {
+  try {
+    if (
+      !documentPath ||
+      typeof documentPath !== "string" ||
+      !isDocRefString(documentPath)
+    ) {
+      throw new Error("Invalid Document Path");
+    }
+    const documentRef = getRef(documentPath);
+    const doc = await documentRef.get();
+    return doc.exists;
+  } catch (error) {
+    console.error("Firestore Services :: checkIfDocExists :: error", error);
+    throw error;
+  }
+};
+
+const incrementFieldValue = async (documentPath, field, value = 1) => {
+  try {
+    if (
+      !documentPath ||
+      typeof documentPath !== "string" ||
+      !isDocRefString(documentPath)
+    ) {
+      throw new Error("Invalid Document Path");
+    }
+    if (!field || typeof field !== "string") {
+      throw new Error("Invalid Field");
+    }
+    if (!value || typeof value !== "number") {
+      throw new Error("Invalid Value");
+    }
+    const documentRef = getRef(documentPath);
+    documentRef.set(
+      {
+        [field]: FieldValue.increment(value),
+      },
+      { merge: true }
+    );
+  } catch (error) {
+    console.error("Firestore Services :: incrementFieldValue :: error", error);
+    throw error;
+  }
+};
 export {
   getRef,
   addDoc,
@@ -280,4 +325,6 @@ export {
   patchDoc,
   deleteDoc,
   deleteFields,
+  checkIfDocExists,
+  incrementFieldValue,
 };

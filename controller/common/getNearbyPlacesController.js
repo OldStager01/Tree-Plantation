@@ -2,6 +2,11 @@ import { getNearbyPlaces } from "../../services/common/getNearbyPlaces.js";
 
 export const getNearbyPlacesController = async (req, res) => {
   const { lat, lon, radius, state, country } = req.query;
+  lat = parseFloat(lat);
+  lon = parseFloat(lon);
+  radius = parseFloat(radius);
+  state = state ? state.toLowerCase() : null;
+  country = country ? country.toLowerCase() : null;
   try {
     if (!lat || !lon || !radius) {
       throw new Error("Latitude, longitude, and radius are required");

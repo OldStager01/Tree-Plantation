@@ -6,7 +6,7 @@ const userModel = {
   role: "string", //String
   locality: "geopoint", //GeoPoint
   isVerified: "boolean`", //Boolean
-  plantationIds: "array", //Array of Strings (Plantation Ids)
+  treesPlanted: "number", //Number
   ngoId: "string", //String (NGO ID) if user role is volunteer
   dob: "timestamp", //Timestamp
   //Rewards

@@ -1,9 +1,11 @@
 const plantationModel = {
-  treesPlanted: "array", //Array of treeModel
-  plantationDate: "timestamp", //Date
-  place: "string", //String (Place ID) if any
+  treesPlanted: "number", //Number
+  orderQuantity: "number", //Number
+  placeId: "string", //String (Place ID) if any
+  plantedBy: "string", //String (user/ngo)
+  status: "string", //String (status)
+  trees: "array", //Array of treeModel
   //Only one out of following fidlds will be present
-  userId: "string", //String (User ID) if any
   ngoId: "string", //String (NGO ID) if any
   campaignId: "string", //String (Campaign ID) if any
   //**//
@@ -11,7 +13,8 @@ const plantationModel = {
 
 const treeModel = {
   treeName: "string", //String
-  treeCount: "number", //Number
+  treeType: "string", //String
+  plantationDate: "number", //Number
 };
 
 export { plantationModel, treeModel };
