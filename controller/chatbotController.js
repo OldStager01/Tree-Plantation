@@ -11,7 +11,7 @@ const getChatbotResponse = async (req, res) => {
     let chatInstance;
     let newChatId = chatId;
     if (chatId) {
-      chatInstance = JSON.parse(cache.get(chatId));
+      chatInstance = cache.get(chatId) && JSON.parse(cache.get(chatId));
     }
     if (!chatInstance) {
       newChatId = uuidv4();
