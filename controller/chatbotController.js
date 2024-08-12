@@ -11,7 +11,7 @@ const getChatbotResponse = async (req, res) => {
     let chatInstance;
     let newChatId = chatId;
     if (chatId) {
-      chatInstance = cache.get(chatId);
+      chatInstance = JSON.parse(cache.get(chatId));
     }
     if (!chatInstance) {
       newChatId = uuidv4();
@@ -19,7 +19,7 @@ const getChatbotResponse = async (req, res) => {
     }
     const response = await sendMessage(chatInstance, prompt);
     console.log("Chat", chatInstance.params.history);
-    cache.set(newChatId, chatInstance);
+    cache.set(newChatId, JSON.stringify(chatInstance));
     // res.status(200).json({ newChatId, response });
     res.status(200).json({ newChatId, response: chatInstance.params.history });
   } catch (error) {
