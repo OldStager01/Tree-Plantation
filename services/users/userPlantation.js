@@ -108,7 +108,7 @@ export const plantTree = async (
     //Increment the tree count in the user
     await incrementFieldValue(userDocRef, "treesPlanted", 1);
 
-    fs.unlinkSync(photo.path);
+    // fs.unlinkSync(photo.path);
     return treeId;
   } catch (error) {
     console.error("Failed to plant tree", error);

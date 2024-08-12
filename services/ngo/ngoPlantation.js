@@ -109,7 +109,7 @@ export const plantTree = async (
       config.storageFolder,
       photo.mimetype
     );
-    fs.unlinkSync(photo.path);
+    // fs.unlinkSync(photo.path);
     tree.photo = fileName;
 
     //Add doc to tree collection of user
