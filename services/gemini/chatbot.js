@@ -1,12 +1,17 @@
 import chatbotModel from "../../model/gemini/chatbotModel.js";
 
-const startChatInstance = () => {
-  return chatbotModel.startChat({ history: [] });
+const startChatInstance = (history = []) => {
+  return chatbotModel.startChat({ history: history });
 };
 
 const sendMessage = async (chatInstance, prompt) => {
-  const response = await chatInstance.sendMessage(prompt);
-  return response.response.text();
+  try {
+    const response = await chatInstance.sendMessage(prompt);
+    return response.response.text();
+  } catch (error) {
+    console.log(error);
+    return "I'm sorry, I don't understand that.";
+  }
 };
 
 export { startChatInstance, sendMessage };
