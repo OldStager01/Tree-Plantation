@@ -101,9 +101,9 @@ export const getTreeController = async (req, res) => {
       throw new Error("Invalid Input");
     }
     const tree = await getTree(userId, ngoId, plantationId, treeId);
-    res.send(tree);
+    return res.send(tree);
   } catch (error) {
     console.error("Error in getTreeController: ", error);
-    res.status(500).send({ message: "Internal Server Error" });
+    return res.status(500).send({ message: "Internal Server Error" });
   }
 };

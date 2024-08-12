@@ -18,7 +18,7 @@ router.get("/getUser", getUserController);
 //Plantation Routes
 
 router.get("/getPlantations", getPlantationsController);
-router.get("/getTrees", getTreesController);
+router.post("/getTrees", getTreesController);
 router.post("/initializePlantation", initialiazePlantationController);
 router.post("/plantTree", upload.single("photo"), plantTreeController);
 router.post("/completePlantation", completePlantationController);

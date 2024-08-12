@@ -96,18 +96,18 @@ export const getPlantationsController = async (req, res) => {
 
 export const getTreesController = async (req, res) => {
   try {
-    const { plantationId } = req.query;
+    const { plantationId } = req.body;
     const userId = req?.user?.uid;
     if (!plantationId) throw new Error("Plantation ID is required");
     if (!userId) throw new Error("User ID is required");
     const trees = await getTrees(userId, plantationId);
     if (!trees || trees.length === 0) {
-      res.status(200).json({
+      return res.status(200).json({
         status: "success",
         trees: [],
       });
     }
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       trees,
     });
