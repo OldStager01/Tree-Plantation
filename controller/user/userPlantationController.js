@@ -97,6 +97,7 @@ export const getPlantationsController = async (req, res) => {
 export const getTreesController = async (req, res) => {
   try {
     const { plantationId } = req.body;
+
     const userId = req?.user?.uid;
     if (!plantationId) throw new Error("Plantation ID is required");
     if (!userId) throw new Error("User ID is required");

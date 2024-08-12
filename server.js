@@ -1,4 +1,6 @@
 import express from "express";
+import cors from "cors";
+
 const app = express();
 import bodyParser from "body-parser";
 app.use(bodyParser.json());
@@ -11,6 +13,7 @@ import ngoRouter from "./routes/ngoRoute.js";
 import userRouter from "./routes/userRoute.js";
 import isAuthenticated from "./middleware/isAuth.js";
 
+app.use(cors());
 app.get("/", (req, res) => {
   res.json({ message: "Hello World" });
 });
