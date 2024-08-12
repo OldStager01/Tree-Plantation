@@ -98,20 +98,20 @@ export const plantTree = async (
     tree.placeId = placeId;
     if (treeName) tree.treeName = treeName;
 
-    //Upload photo
-    //Uplaod Photo
-    let fileName = `${userId}_${plantationId}_${treeType}_${Date.now()}`;
-    fileName = `${fileName.trim().replace(/[^\w\-_.]/g, "")}`;
+    if (photo) {
+      //Upload photo
+      let fileName = `${userId}_${plantationId}_${treeType}_${Date.now()}`;
+      fileName = `${fileName.trim().replace(/[^\w\-_.]/g, "")}`;
 
-    await uploadFile(
-      fileName,
-      photo.path,
-      config.storageFolder,
-      photo.mimetype
-    );
-    // fs.unlinkSync(photo.path);
-    tree.photo = fileName;
-
+      await uploadFile(
+        fileName,
+        photo.path,
+        config.storageFolder,
+        photo.mimetype
+      );
+      // fs.unlinkSync(photo.path);
+      tree.photo = fileName;
+    }
     //Add doc to tree collection of user
     await addDoc(treeRef, tree);
     //Increment the tree count in the plantation

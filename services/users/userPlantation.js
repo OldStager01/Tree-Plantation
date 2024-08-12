@@ -66,13 +66,13 @@ export const initializePlantation = async (userId, placeId) => {
 export const plantTree = async (
   userId,
   plantationId,
-  { treeType, treeName = null, photo = null } //TODO: ADD IMAGE
+  { treeType, treeName = null, photo = null } = {} //TODO: ADD IMAGE
 ) => {
   try {
     if (!userId) throw new Error("User ID is required");
     if (!plantationId) throw new Error("Plantation ID is required");
     if (!treeType) throw new Error("Tree Type is required");
-    if (!photo) throw new Error("Photo is required");
+    // if (!photo) throw new Error("Photo is required");
     const userDocRef = `${config.firestoreUsersCollection}/{${userId}}`;
     const plantationDocRef = `${userDocRef}/${config.firestorePlantationCollection}/{${plantationId}}`;
     const treeCollectionRef = `${plantationDocRef}/${config.firestoreTreeCollection}`;
@@ -81,23 +81,26 @@ export const plantTree = async (
     const plantation = await getDoc(plantationDocRef);
     if (plantation.status && plantation.status !== "ongoing")
       throw new Error("Plantation is not ongoing");
-    //Uplaod Photo
-    let fileName = `${userId}_${plantationId}_${treeType}_${Date.now()}`;
-    fileName = `${fileName.trim().replace(/[^\w\-_.]/g, "")}`;
-
-    await uploadFile(
-      fileName,
-      photo.path,
-      config.storageFolder,
-      photo.mimetype
-    );
 
     const tree = {
       treeType,
       treeName,
       plantationDate: Date.now(),
-      photo: fileName, //FileName
     };
+    if (photo) {
+      //Uplaod Photo
+      let fileName = `${userId}_${plantationId}_${treeType}_${Date.now()}`;
+      fileName = `${fileName.trim().replace(/[^\w\-_.]/g, "")}`;
+
+      await uploadFile(
+        fileName,
+        photo.path,
+        config.storageFolder,
+        photo.mimetype
+      );
+
+      tree.photo = fileName;
+    }
 
     //Add the tree to the plantation
     const treeId = await addDoc(`${treeCollectionRef}`, tree);

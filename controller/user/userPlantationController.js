@@ -30,11 +30,11 @@ export const initialiazePlantationController = async (req, res) => {
 export const plantTreeController = async (req, res) => {
   try {
     const { plantationId, treeType, treeName } = req.body;
-    const photo = req.file;
+    const photo = req?.file;
     const userId = req?.user?.uid;
     if (!plantationId || !treeType)
       throw new Error("Plantation ID and Tree Type are required");
-    if (!photo) throw new Error("Photo is required");
+    // if (!photo) throw new Error("Photo is required");
     if (!userId) throw new Error("User ID is required");
 
     const tree = {

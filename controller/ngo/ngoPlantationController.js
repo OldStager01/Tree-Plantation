@@ -43,14 +43,14 @@ export const plantTreeController = async (req, res) => {
   try {
     const { userId, plantationId, placeId, treeType, treeName } = req.body;
     const ngoId = req.user.uid;
-    const photo = req.file;
+    const photo = req?.file;
 
     if (!userId || !ngoId || !plantationId || !placeId || !treeType) {
       throw new Error("Invalid Input");
     }
-    if (Object.keys(photo).length === 0) {
-      throw new Error("Photo not uploaded");
-    }
+    // if (Object.keys(photo).length === 0) {
+    //   throw new Error("Photo not uploaded");
+    // }
     const res = await plantTree(userId, ngoId, plantationId, {
       treeType,
       treeName,
