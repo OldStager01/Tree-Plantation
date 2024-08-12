@@ -1,4 +1,7 @@
-import { startChatInstance, sendMessage } from "../services/gemini/chatbot.js";
+import {
+  startChatInstance,
+  sendMessage,
+} from "../../services/gemini/chatbot.js";
 import { v4 as uuidv4 } from "uuid";
 import NodeCache from "node-cache";
 const cache = new NodeCache({ stdTTL: 10 * 60 }); // 10 minutes

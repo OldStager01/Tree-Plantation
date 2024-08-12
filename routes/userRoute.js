@@ -10,6 +10,7 @@ import {
 } from "../controller/user/userPlantationController.js";
 
 import { upload } from "../config/multer.js";
+import { plantationChatController } from "../controller/user/plantationChatController.js";
 const router = express.Router();
 
 router.get("/getUser", getUserController);
@@ -22,5 +23,6 @@ router.post("/initializePlantation", initialiazePlantationController);
 router.post("/plantTree", upload.single("photo"), plantTreeController);
 router.post("/completePlantation", completePlantationController);
 router.get("/photoURL", getPhotoURLController);
+router.post("/plantationChat", plantationChatController);
 
 export default router;

@@ -79,7 +79,7 @@ export const plantTree = async (
 
     //Check Plantation Status
     const plantation = await getDoc(plantationDocRef);
-    if (plantation.status !== "ongoing")
+    if (plantation.status && plantation.status !== "ongoing")
       throw new Error("Plantation is not ongoing");
     //Uplaod Photo
     let fileName = `${userId}_${plantationId}_${treeType}_${Date.now()}`;
