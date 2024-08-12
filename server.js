@@ -20,14 +20,15 @@ app.get("/favicon.ico", (req, res) => {
 app.get("/favicon.png", (req, res) => {
   res.status(204).end();
 });
+//!!!TESTING!!!
+app.use("/test", testRouter);
+
 app.use(isAuthenticated);
 
 app.use("/auth", authRouter);
 app.use("/common", commonRouter);
 app.use("/user", userRouter);
 app.use("/ngo", ngoRouter);
-//!!!TESTING!!!
-app.use("/test", testRouter);
 
 //Favicon error fix
 
