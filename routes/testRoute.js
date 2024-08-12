@@ -10,7 +10,8 @@ import {
   uploadFilesContoller,
 } from "../controller/testController.js";
 import { upload } from "../config/multer.js";
-import { getChatbotResponse } from "../controller/geminiTestController.js";
+// import { getChatbotResponse } from "../controller/geminiTestController.js";
+import { getChatbotResponse } from "../controller/chatbotController.js";
 
 const testRouter = express.Router();
 
