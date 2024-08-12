@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../temp"));
+    cb(null, path.join(__dirname, "../tmp"));
   },
   filename: function (req, file, cb) {
     const cleanedFilename = `${file.originalname
