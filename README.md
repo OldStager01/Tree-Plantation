@@ -1,7 +1,5 @@
 # Tree Plantation | Backend API
 
-orm - Backend API
-
 Welcome to the Tree Plantation Platform! This project provides a platform where individuals and NGOs can come together to plant trees, either through direct contributions or by self-planting. Our goal is to encourage sustainable practices and contribute to a greener planet.
 
 ## Features
