@@ -66,8 +66,8 @@ Welcome to the Tree Plantation Platform! This project provides a platform where 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/tree-plantation-backend.git
-   cd tree-plantation-backend
+   git clone https://github.com/OldStager01/Tree-Plantation.git
+   cd Tree-Plantation
    ```
 
 2. **Install dependencies:**
